@@ -102,6 +102,7 @@ class Game extends React.Component {
 		this.setState({
 			stepNumber: step,
 			xIsNext: (step % 2) === 0,
+			bold: true,
 		});
 	}
 	
@@ -112,9 +113,10 @@ class Game extends React.Component {
 		const moves = history.map((step, move) => {
 			const moveMade = step.move.join(',')
 			const desc = move ? 'Go to move #' + move + ',MoveMade: ' + moveMade: 'Go to game start';
+			const buttonStyle = (move === this.state.stepNumber)  ? {fontWeight:'bold'} : {fontWeight:'normal'}
 			return (
 				<li key={move}>
-					<button onClick = {() => this.jumpTo(move)}>{desc}</button>
+					<button style={buttonStyle} onClick = {(event) => this.jumpTo(move)}>{desc}</button>
 				</li>
 			);
 		});
